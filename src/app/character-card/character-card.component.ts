@@ -12,6 +12,7 @@ export class CharacterCardComponent {
 
   constructor(private router: Router) {
   }
+  
   @Input() personaje: any;
 
   verTransformaciones(id: number): void {
@@ -19,4 +20,5 @@ export class CharacterCardComponent {
     this.router.navigate(['/transformaciones', id]);
     // Aquí puedes agregar la lógica de redirección (usando el router, por ejemplo)
   }
+
 }
