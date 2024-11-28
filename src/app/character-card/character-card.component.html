@@ -12,14 +12,24 @@
     </div>
   </div>
   <div class="p-4">
-    <h2 class="text-xl font-semibold text-gray-800 mb-2">Ki: {{personaje.ki}}</h2>
-    <h3 class="text-gray-600 mb-4">{{personaje.description}}</h3>
     <button
       (click)="verTransformaciones(personaje.id)"
       class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105"
     >
       Ver Transformaciones
     </button>
+    <button
+      (click)="abrirModal(personaje)"
+      class="w-full bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mt-2 transition duration-300 ease-in-out transform hover:scale-105"
+    >
+      Ver Origen
+    </button>
   </div>
 </div>
 
+<!-- Usar el componente Modal -->
+<app-modal
+  [isVisible]="modalVisible"
+  [personaje]="modalPersonaje"
+  (cerrarModalEvent)="cerrarModal()">
+</app-modal>

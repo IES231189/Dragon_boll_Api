@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
-import {DragonBServiceService} from '../dragon-bservice.service';
+import {DragonBServiceService} from "../dragon-bservice.service";
 import {Input} from "@angular/core";
 @Component({
   selector: 'app-menu-tranformaciones',

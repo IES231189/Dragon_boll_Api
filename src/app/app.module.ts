@@ -8,6 +8,7 @@ import { MenuPersonajesComponent } from './menu-personajes/menu-personajes.compo
 import {DragonBServiceService} from './dragon-bservice.service';
 import { MenuTranformacionesComponent } from './menu-tranformaciones/menu-tranformaciones.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     CharacterCardComponent,
     MenuPersonajesComponent,
     MenuTranformacionesComponent,
+    ModalComponent,
 
   ],
   imports: [

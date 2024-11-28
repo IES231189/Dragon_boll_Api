@@ -1,50 +1,49 @@
-<div *ngIf="transformaciones.length > 0" class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-6">
-  <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">{{ personajeName }}</h2>
+<div *ngIf="transformaciones.length > 0" class="p-4 space-y-6">
+  <h2 class="text-2xl font-bold text-center">{{ personajeName }}</h2>
 
-  <!-- Mostrar la primera transformación del personaje -->
-  <div class="transformacion-card space-y-4">
-    <img [src]="currentTransformacion.image" alt="{{ currentTransformacion.name }}" class="w-full h-64 object-cover rounded-lg">
-    <h4 class="text-xl font-semibold text-gray-700">{{ currentTransformacion.name }}</h4>
+  <!-- Iterar sobre todas las transformaciones -->
+  <div *ngFor="let transformacion of transformaciones; let i = index" class="transformacion-card border rounded-lg p-4 shadow-md space-y-4">
+    <!-- Imagen más pequeña y completa -->
+    <img [src]="transformacion.image" alt="{{ transformacion.name }}" class="w-32 h-32 object-contain mx-auto">
+    <h4 class="text-xl font-semibold text-center">{{ transformacion.name }}</h4>
 
     <!-- Campo de entrada para cambiar el valor de Ki -->
     <div class="flex items-center space-x-2">
-      <label for="ki-input" class="text-gray-600 font-medium">Ki:</label>
+      <p class="text-lg">Ki:</p>
       <input
-        id="ki-input"
         type="text"
-        [(ngModel)]="currentTransformacion.ki"
+        [(ngModel)]="transformacion.ki"
         placeholder="Ingrese nuevo Ki"
-        class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        class="border rounded px-3 py-2 w-full max-w-xs text-gray-700"
       >
     </div>
 
     <!-- Botón para guardar el nuevo valor de Ki -->
     <button
-      (click)="saveKi(currentTransformacion)"
-      class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105"
+      (click)="saveKi(transformacion)"
+      class="w-full max-w-xs bg-blue-500 text-white py-2 rounded hover:bg-blue-600 focus:outline-none"
     >
       Guardar Ki
     </button>
 
     <!-- Mostrar el valor de Ki guardado -->
-    <h3 class="text-lg font-medium text-gray-700">Valor de Ki guardado: <span class="font-bold">{{ currentTransformacion.ki }}</span></h3>
+    <h3 class="text-lg font-semibold">Valor de Ki guardado: {{ transformacion.ki }}</h3>
   </div>
 
   <!-- Botones para navegar entre los personajes -->
-  <div class="navigation-buttons flex justify-between mt-6">
+  <div class="flex justify-between mt-6">
     <button
       (click)="previousPersonaje()"
       [disabled]="personajeId <= 1"
-      class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+      class="bg-gray-500 text-white py-2 px-4 rounded disabled:opacity-50 hover:bg-gray-600 focus:outline-none"
     >
       Anterior
     </button>
     <button
       (click)="nextPersonaje()"
-      class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+      class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none"
     >
       Siguiente
     </button>
   </div>
 </div>
-

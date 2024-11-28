@@ -10,9 +10,14 @@ import {Router} from '@angular/router';
 })
 export class CharacterCardComponent {
 
+  modalVisible = false;
+  modalPersonaje: any = null;
+
+
   constructor(private router: Router) {
   }
   @Input() personaje: any;
+
 
   verTransformaciones(id: number): void {
     console.log(`Redirigiendo a las transformaciones del personaje con ID: ${id}`);
