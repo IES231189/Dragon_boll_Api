@@ -1,29 +1,50 @@
-<div *ngIf="transformaciones.length > 0">
-  <h2>{{ personajeName }}</h2>
+<div *ngIf="transformaciones.length > 0" class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-6">
+  <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">{{ personajeName }}</h2>
 
   <!-- Mostrar la primera transformación del personaje -->
-  <div class="transformacion-card">
-    <img [src]="currentTransformacion.image" alt="{{ currentTransformacion.name }}">
-    <h4>{{ currentTransformacion.name }}</h4>
+  <div class="transformacion-card space-y-4">
+    <img [src]="currentTransformacion.image" alt="{{ currentTransformacion.name }}" class="w-full h-64 object-cover rounded-lg">
+    <h4 class="text-xl font-semibold text-gray-700">{{ currentTransformacion.name }}</h4>
 
     <!-- Campo de entrada para cambiar el valor de Ki -->
-    <p>Ki:
+    <div class="flex items-center space-x-2">
+      <label for="ki-input" class="text-gray-600 font-medium">Ki:</label>
       <input
+        id="ki-input"
         type="text"
         [(ngModel)]="currentTransformacion.ki"
-        placeholder="Ingrese nuevo Ki">
-    </p>
+        placeholder="Ingrese nuevo Ki"
+        class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+    </div>
 
     <!-- Botón para guardar el nuevo valor de Ki -->
-    <button (click)="saveKi(currentTransformacion)">Guardar Ki</button>
+    <button
+      (click)="saveKi(currentTransformacion)"
+      class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105"
+    >
+      Guardar Ki
+    </button>
 
     <!-- Mostrar el valor de Ki guardado -->
-    <h3>Valor de Ki guardado: {{ currentTransformacion.ki }}</h3>
+    <h3 class="text-lg font-medium text-gray-700">Valor de Ki guardado: <span class="font-bold">{{ currentTransformacion.ki }}</span></h3>
   </div>
 
   <!-- Botones para navegar entre los personajes -->
-  <div class="navigation-buttons">
-    <button (click)="previousPersonaje()" [disabled]="personajeId <= 1">Anterior</button>
-    <button (click)="nextPersonaje()">Siguiente</button>
+  <div class="navigation-buttons flex justify-between mt-6">
+    <button
+      (click)="previousPersonaje()"
+      [disabled]="personajeId <= 1"
+      class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      Anterior
+    </button>
+    <button
+      (click)="nextPersonaje()"
+      class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+    >
+      Siguiente
+    </button>
   </div>
 </div>
+
