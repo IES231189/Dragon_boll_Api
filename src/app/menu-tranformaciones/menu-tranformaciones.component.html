@@ -23,7 +23,7 @@
 
       <!-- Botón para editar -->
       <button
-        (click)="abrirModal(transformacion)"
+        (click)="editarTransformacion(transformacion)"
         class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none"
       >
         Editar
@@ -31,42 +31,13 @@
     </div>
   </div>
 
-  <!-- Modal -->
-  <div
+  <!-- Componente EditTransformacion -->
+  <app-edit-transformacion
     *ngIf="modalVisible"
-    class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
-  >
-    <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-6">
-      <h2 class="text-2xl font-bold text-gray-800 text-center mb-4">
-        Editar {{ transformacionSeleccionada?.name }}
-      </h2>
-      <p class="text-gray-600">Ki actual: {{ transformacionSeleccionada?.ki }}</p>
-
-      <!-- Campo de entrada para actualizar Ki -->
-      <input
-        type="text"
-        [(ngModel)]="transformacionSeleccionada.ki"
-        placeholder="Ingrese nuevo Ki"
-        class="border border-gray-300 rounded-md p-2 mt-4 w-full focus:ring-2 focus:ring-blue-500"
-      />
-
-      <!-- Botones para guardar o cerrar -->
-      <div class="flex justify-end mt-6">
-        <button
-          (click)="cerrarModal()"
-          class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded mr-2"
-        >
-          Cancelar
-        </button>
-        <button
-          (click)="guardarTransformacion()"
-          class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-        >
-          Guardar
-        </button>
-      </div>
-    </div>
-  </div>
+    (click)="editarTransformacion(transformaciones)"
+    (onSave)="guardarTransformacion($event)"
+    (onClose)="cerrarModal()"
+  ></app-edit-transformacion>
 
   <!-- Botones de navegación -->
   <div class="flex justify-between mt-8">

@@ -13,7 +13,7 @@ export class MenuTranformacionesComponent implements OnInit {
   personajeName: string = '';
   transformaciones: any[] = [];
   transformacionSeleccionada: any = null; // Transformación seleccionada para editar
-  modalVisible: boolean = false; // Controla la visibilidad del modal
+  modalVisible: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,34 +36,29 @@ export class MenuTranformacionesComponent implements OnInit {
     }
   }
 
-  // Función para abrir el modal y seleccionar la transformación
-  abrirModal(transformacion: any): void {
-    this.transformacionSeleccionada = { ...transformacion }; // Copia de la transformación
-    this.modalVisible = true;
+  editarTransformacion(transformacion: any): void {
+    this.router.navigate([`/transformaciones/${this.personajeId}/editar/${transformacion.id}`]);
   }
-
-  // Función para cerrar el modal
+  
   cerrarModal(): void {
     this.modalVisible = false;
     this.transformacionSeleccionada = null;
   }
 
-  // Función para guardar el valor actualizado de Ki
-  guardarTransformacion(): void {
+  guardarTransformacion(transformacionActualizada: any): void {
     const index = this.transformaciones.findIndex(
-      (t) => t.id === this.transformacionSeleccionada.id
+      (t) => t.id === transformacionActualizada.id
     );
     if (index !== -1) {
-      this.transformaciones[index] = { ...this.transformacionSeleccionada }; // Actualizar en la lista
+      this.transformaciones[index] = { ...transformacionActualizada }; // Actualizar en la lista
     }
     localStorage.setItem(
-      `ki-${this.transformacionSeleccionada.id}`,
-      this.transformacionSeleccionada.ki
+      `ki-${transformacionActualizada.id}`,
+      transformacionActualizada.ki
     );
-    this.cerrarModal(); // Cerrar el modal
+    this.cerrarModal();
   }
 
-  // Navegación entre personajes
   nextPersonaje(): void {
     const nextId = this.personajeId + 1;
     this.router.navigate([`/transformaciones/${nextId}`]).then(() => {
