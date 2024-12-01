@@ -1,35 +1,46 @@
-<div class="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-  <div class="relative aspect-w-3 aspect-h-4">
+<div class="w-full max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden flex h-96">
+  <!-- Columna de la imagen -->
+  <div class="flex-1 bg-gray-100 flex items-center justify-center">
     <img
       [src]="personaje.image"
-      [alt]="personaje.name"
-      class="w-full h-full object-cover"
+      alt="{{ personaje.name }}"
+      class="w-auto h-80 object-contain"
     >
-    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent">
-      <div class="absolute bottom-0 left-0 right-0 p-4">
-        <h1 class="text-2xl font-bold text-white">{{personaje.name}}</h1>
+  </div>
+
+  <!-- Columna de la información -->
+  <div class="flex-1 p-6 flex flex-col justify-between">
+    <!-- Información superior -->
+    <div>
+      <h2 class="text-2xl font-bold text-black">{{ personaje.name }}</h2>
+      <p class="text-lg font-bold text-blue-500">KI: {{personaje.ki}}</p>
+      <p class="text-lg font-bold text-blue-500">Raza: {{personaje.race}}</p>
+      <p class="text-lg font-bold text-blue-500">Afiliación: {{personaje.affiliation}}</p>
+      <!-- Descripción con scroll -->
+      <div class="text-sm text-gray-600 mt-4 h-24 overflow-y-auto">
+         {{personaje.description}}
       </div>
     </div>
-  </div>
-  <div class="p-4">
-    <button
-      (click)="verTransformaciones(personaje.id)"
-      class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105"
-    >
-      Ver Transformaciones
-    </button>
-    <button
-      (click)="abrirModal(personaje)"
-      class="w-full bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mt-2 transition duration-300 ease-in-out transform hover:scale-105"
-    >
-      Ver Origen
-    </button>
-  </div>
-</div>
 
-<!-- Usar el componente Modal -->
-<app-modal
-  [isVisible]="modalVisible"
-  [personaje]="modalPersonaje"
-  (cerrarModalEvent)="cerrarModal()">
-</app-modal>
+    <!-- Botones en la parte inferior -->
+    <div class="flex space-x-4">
+      <button
+        class="flex-1 px-4 py-2 bg-blue-500 text-white rounded text-sm"
+        (click)="verTransformaciones(personaje.id)">
+        Transformaciones
+      </button>
+      <button
+        class="flex-1 px-4 py-2 bg-green-500 text-white rounded text-sm"
+        (click)="abrirModal(personaje)">
+        Detalles
+      </button>
+    </div>
+  </div>
+
+  <app-modal
+    [isVisible]="modalVisible"
+    [personaje]="personaje"
+    [fullDetails]="fullCharacterDetails"
+    (cerrarModalEvent)="cerrarModal()">
+  </app-modal>
+</div>

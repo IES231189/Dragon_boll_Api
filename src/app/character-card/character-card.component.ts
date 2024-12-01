@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {Router} from '@angular/router';
+import {DragonBServiceService} from "../dragon-bservice.service";
 
 @Component({
   selector: 'app-character-card',
@@ -11,17 +12,35 @@ import {Router} from '@angular/router';
 export class CharacterCardComponent {
 
   modalVisible = false;
-  modalPersonaje: any = null;
+  fullCharacterDetails: any = null;
 
+  constructor(
+    private router: Router,
+    private dragonBService: DragonBServiceService
+  ) {}
 
-  constructor(private router: Router) {
-  }
   @Input() personaje: any;
 
+  ngOnInit(): void {}
+
+  abrirModal(personaje: any) {
+    this.dragonBService.getCharacterDetails(personaje.id).subscribe(
+      (data) => {
+        this.fullCharacterDetails = data;
+        this.modalVisible = true;
+      },
+      (error) => {
+        console.error('Error fetching character details:', error);
+      }
+    );
+  }
+
+  cerrarModal() {
+    this.modalVisible = false;
+    this.fullCharacterDetails = null;
+  }
 
   verTransformaciones(id: number): void {
-    console.log(`Redirigiendo a las transformaciones del personaje con ID: ${id}`);
     this.router.navigate(['/transformaciones', id]);
-    // Aquí puedes agregar la lógica de redirección (usando el router, por ejemplo)
   }
 }

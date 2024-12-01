@@ -9,6 +9,7 @@ import {EventEmitter} from "@angular/core";
 export class ModalComponent {
   @Input() isVisible: boolean = false;
   @Input() personaje: any;
+  @Input() fullDetails: any;
   @Output() cerrarModalEvent = new EventEmitter<void>();
 
   cerrarModal() {

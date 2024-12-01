@@ -9,6 +9,7 @@ import {DragonBServiceService} from './dragon-bservice.service';
 import { MenuTranformacionesComponent } from './menu-tranformaciones/menu-tranformaciones.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ModalComponent } from './modal/modal.component';
+import { EditarKiComponent } from './editar-ki/editar-ki.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,9 @@ import { ModalComponent } from './modal/modal.component';
     MenuPersonajesComponent,
     MenuTranformacionesComponent,
     ModalComponent,
+    EditarKiComponent,
+
+
 
   ],
   imports: [

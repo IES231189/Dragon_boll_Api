@@ -10,7 +10,7 @@ import {OnInit} from '@angular/core';
   templateUrl: './menu-personajes.component.html',
   styleUrl: './menu-personajes.component.css'
 })
-export class MenuPersonajesComponent {
+export class MenuPersonajesComponent implements OnInit{
 
 
   personajes: any[] = [];
@@ -34,10 +34,11 @@ export class MenuPersonajesComponent {
     );
   }
 
-  buscarPersonaje(termino: string): void {
-    const terminoLower = termino.toLowerCase(); // Convertir el término a minúsculas para búsqueda insensible a mayúsculas
+  buscarPersonaje(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const termino = input.value.toLowerCase();
     this.personajesFiltrados = this.personajes.filter((personaje) =>
-      personaje.name.toLowerCase().includes(terminoLower) // Comparar nombres
+      personaje.name.toLowerCase().includes(termino)
     );
   }
 

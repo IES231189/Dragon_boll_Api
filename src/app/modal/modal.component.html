@@ -1,50 +1,46 @@
-<!-- Modal -->
-<div *ngIf="isVisible" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
-  <div class="p-6 bg-white rounded-lg shadow-md w-full max-w-3xl">
-    <!-- Título del personaje -->
-    <h2 class="text-3xl font-bold text-gray-800 mb-4">{{ personaje.name }}</h2>
+<div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50" *ngIf="isVisible">
+  <div class="p-6 bg-white rounded-lg shadow-md w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+    <ng-container *ngIf="fullDetails">
+      <!-- Título -->
+      <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">{{ fullDetails.originPlanet.name }}</h2>
 
-    <!-- Información de Ki y descripción -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-      <!-- Info de Ki -->
-      <div class="flex flex-col space-y-2">
-        <p class="text-lg font-semibold text-gray-600">Ki:</p>
-        <p class="text-xl font-medium text-blue-600">{{ personaje.ki }}</p>
+      <!-- Contenedor de imagen y contenido -->
+      <div class="flex mb-6">
+        <!-- Imagen a la izquierda -->
+        <div class="mr-6">
+          <img [src]="fullDetails.originPlanet.image" alt="{{ fullDetails.originPlanet.name }}" class="rounded-lg w-64 h-64 object-cover" />
+        </div>
+
+        <!-- Contenido a la derecha -->
+        <div class="flex-1">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            <div class="flex flex-col space-y-2">
+              <strong>Destruido?:</strong>
+              {{ fullDetails.originPlanet.isDestroyed }}
+            </div>
+          </div>
+
+          <!-- Descripción -->
+          <div class="flex flex-col space-y-2 mb-6">
+            <strong>Descripción:</strong>
+            {{ fullDetails.originPlanet.description }}
+          </div>
+        </div>
       </div>
 
-      <!-- Información de Género -->
-      <div class="flex flex-col space-y-2">
-        <p class="text-lg font-semibold text-gray-600">Género:</p>
-        <p class="text-xl font-medium text-blue-600">{{ personaje.gender }}</p>
+      <!-- Botón de cierre -->
+      <div class="mt-6 text-center">
+        <button
+          class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          (click)="cerrarModal()">
+          Cerrar
+        </button>
       </div>
+    </ng-container>
 
-      <!-- Información de Raza -->
-      <div class="flex flex-col space-y-2">
-        <p class="text-lg font-semibold text-gray-600">Raza:</p>
-        <p class="text-xl font-medium text-blue-600">{{ personaje.race }}</p>
-      </div>
-
-      <!-- Información de Afilicación -->
-      <div class="flex flex-col space-y-2">
-        <p class="text-lg font-semibold text-gray-600">Afilicación:</p>
-        <p class="text-xl font-medium text-blue-600">{{ personaje.affiliation }}</p>
-      </div>
-    </div>
-
-    <!-- Descripción del personaje -->
-    <div class="flex flex-col space-y-2 mb-6">
-      <p class="text-lg font-semibold text-gray-600">Descripción:</p>
-      <p class="text-base text-gray-700">{{ personaje.description }}</p>
-    </div>
-
-    <!-- Botón de acción o transformaciones -->
-    <div class="mt-6 text-center">
-      <button
-        (click)="cerrarModal()"
-        class="px-6 py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      >
-        Cerrar
-      </button>
+    <!-- Indicador de carga -->
+    <div *ngIf="!fullDetails" class="text-center">
+      Cargando detalles...
     </div>
   </div>
 </div>
