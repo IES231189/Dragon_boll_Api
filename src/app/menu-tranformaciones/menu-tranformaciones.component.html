@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="p-4 space-y-6">
   <h2 class="text-2xl font-bold text-center">{{ personajeName }}</h2>
 
@@ -60,6 +61,62 @@
     <button
       class="px-4 py-2 bg-gray-300 rounded"
       (click)="nextPersonaje()">
+=======
+<div *ngIf="transformaciones.length > 0" class="p-6 bg-gray-100">
+  <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">
+    {{ personajeName }}
+  </h2>
+
+  <!-- Contenedor para las transformaciones -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div
+      *ngFor="let transformacion of transformaciones"
+      class="bg-white shadow-lg rounded-lg p-4 text-center"
+    >
+      <img
+        [src]="transformacion.image"
+        [alt]="transformacion.name"
+        class="w-32 h-32 mx-auto rounded-full border-2 border-gray-300"
+      />
+      <h4 class="text-lg font-semibold text-gray-700 mt-4">
+        {{ transformacion.name }}
+      </h4>
+      <p class="text-gray-600 mt-2">
+        Ki: <span class="font-bold">{{ transformacion.ki }}</span>
+      </p>
+
+      <!-- Botón para editar -->
+      <button
+        (click)="editarTransformacion(transformacion)"
+        class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none"
+      >
+        Editar
+      </button>
+    </div>
+  </div>
+
+  <!-- Componente EditTransformacion -->
+  <app-edit-transformacion
+    *ngIf="modalVisible"
+    (click)="editarTransformacion(transformaciones)"
+    (onSave)="guardarTransformacion($event)"
+    (onClose)="cerrarModal()"
+  ></app-edit-transformacion>
+
+  <!-- Botones de navegación -->
+  <div class="flex justify-between mt-8">
+    <button
+      (click)="previousPersonaje()"
+      [disabled]="personajeId <= 1"
+      class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      Anterior
+    </button>
+    <button
+      (click)="nextPersonaje()"
+      class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+    >
+>>>>>>> 2c114b9d5bfadd0c0248a5a6b123979932a201b8
       Siguiente
     </button>
   </div>

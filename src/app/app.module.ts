@@ -8,8 +8,12 @@ import { MenuPersonajesComponent } from './menu-personajes/menu-personajes.compo
 import {DragonBServiceService} from './dragon-bservice.service';
 import { MenuTranformacionesComponent } from './menu-tranformaciones/menu-tranformaciones.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+<<<<<<< HEAD
 import { ModalComponent } from './modal/modal.component';
 import { EditarKiComponent } from './editar-ki/editar-ki.component';
+=======
+import { EditTransformacionComponent } from './edit-transformacion/edit-transformacion.component';
+>>>>>>> 2c114b9d5bfadd0c0248a5a6b123979932a201b8
 
 @NgModule({
   declarations: [
@@ -17,10 +21,14 @@ import { EditarKiComponent } from './editar-ki/editar-ki.component';
     CharacterCardComponent,
     MenuPersonajesComponent,
     MenuTranformacionesComponent,
+<<<<<<< HEAD
     ModalComponent,
     EditarKiComponent,
 
 
+=======
+    EditTransformacionComponent,
+>>>>>>> 2c114b9d5bfadd0c0248a5a6b123979932a201b8
 
   ],
   imports: [

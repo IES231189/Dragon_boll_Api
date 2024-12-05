@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="w-full max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden flex h-96">
   <!-- Columna de la imagen -->
   <div class="flex-1 bg-gray-100 flex items-center justify-center">
@@ -43,4 +44,19 @@
     [fullDetails]="fullCharacterDetails"
     (cerrarModalEvent)="cerrarModal()">
   </app-modal>
+=======
+<div class="max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+  <h1 class="text-2xl font-bold text-center text-gray-800 mt-4">{{personaje.name}}</h1>
+  <img [src]="personaje.image" alt="{{personaje.name}}" class="w-full h-48 object-cover mt-4">
+  <div class="p-4">
+    <h2 class="text-xl font-semibold text-gray-700">Ki: {{personaje.ki}}</h2>
+    <h3 class="text-gray-600 mt-2">{{personaje.description}}</h3>
+    <button
+      (click)="verTransformaciones(personaje.id)"
+      class="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
+    >
+      Ver Transformaciones
+    </button>
+  </div>
+>>>>>>> 2c114b9d5bfadd0c0248a5a6b123979932a201b8
 </div>
