@@ -26,3 +26,7 @@ export class DragonBServiceService {
     return this.http.get<any>(`${this.apiUrl}/${personajeId}`);
   }
 }
+
+//hola a todos, esto es para poder hacer merge
+
+var a = 10;
