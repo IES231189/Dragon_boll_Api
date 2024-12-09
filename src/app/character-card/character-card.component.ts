@@ -11,7 +11,6 @@ import {DragonBServiceService} from "../dragon-bservice.service";
 })
 export class CharacterCardComponent {
 
-<<<<<<< HEAD
   modalVisible = false;
   fullCharacterDetails: any = null;
 
@@ -20,11 +19,6 @@ export class CharacterCardComponent {
     private dragonBService: DragonBServiceService
   ) {}
 
-=======
-  constructor(private router: Router) {
-  }
-  
->>>>>>> 2c114b9d5bfadd0c0248a5a6b123979932a201b8
   @Input() personaje: any;
 
   ngOnInit(): void {}
@@ -49,5 +43,4 @@ export class CharacterCardComponent {
   verTransformaciones(id: number): void {
     this.router.navigate(['/transformaciones', id]);
   }
-
 }
